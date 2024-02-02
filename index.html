@@ -11,41 +11,37 @@
 </head>
 
 <body>
-    <div class="ontainer d-flex flex-column align-items-center justify-content-center ">
-        <div>
-            <h2>search venue by city</h2>
-        </div>
-        <section>
-            <div class="input-group">
-                <div class="form-outline" data-mdb-input-init>
-                    <input id="search-input" type="search" id="form1" class="form-control" />
-                    <label class="form-label" for="form1">Search</label>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <div class="row">
+                    <h1 class="navbar-brand">Game Day Stadiums Near You</h1>
                 </div>
-                <button id="search-button" type="button" class="btn btn-primary">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </section>
-        <section>
-            <div class="card" style="width: 18rem;">
-                <img src="https://media.api-sports.io/football/venues/1612.png" class="card-img-top"
-                    alt="Chicago Skyscrapers" />
-                <div class="card-body">
-                    <h5 class="card-title text-center">Lumen Field</h5>
-                    <ul class="list-group list-group-light list-group-small">
-                        <li class="list-group-item px-4">Address: 800 Occidental Avenue South</li>
-                        <li class="list-group-item px-4">Capacity: 72.000 Espectators</li>
-                        <li class="list-group-item px-4">City: Seattle, Washington</li>
-                        <li class="list-group-item px-4">Surface: Artificial turf</li>
-                    </ul>
+                <div class="col-lg-6">
+                    <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Venues</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">About</a>
+                            </li>
+                            <!-- Add more navigation links as needed -->
+                        </ul>
+                    </div>
                 </div>
-                
-                
-            </div>
-        </section>
-    </div>
+        </nav>
+    </header>
 
     <script src="./js/script.js"></script>
+</body>
 </body>
 
 
