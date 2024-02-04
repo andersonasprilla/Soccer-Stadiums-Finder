@@ -14,8 +14,8 @@ fetch(url, options)
         console.log(data);    
     })
 
-    const url = 'https://google-maps-geocoding.p.rapidapi.com/geocode/json?address=164%20Townsend%20St.%2C%20San%20Francisco%2C%20CA&language=en';
-const options = {
+    const link = 'https://google-maps-geocoding.p.rapidapi.com/geocode/json?address=164%20Townsend%20St.%2C%20San%20Francisco%2C%20CA&language=en';
+    const process = {
     method: 'GET',
     headers: {
         'X-RapidAPI-Key': 'cc6662c9a3msh28bb13fdd1e33c2p1bf432jsn2e8126b92b70',
@@ -25,4 +25,10 @@ const options = {
 function verifyCity(){
     var input=document.getElementById('search-input').value;
     var locator= new google.maps.Geocoder();
+    locator.geocode({address: input}, function(results, status){
+        if (status ==google.map.GeocoderStatus.OK && results && results.length>0){
+            var locationRestrictions=results[0].adress_component;
+            var cityConfirmation=locationRestrictions.some(component => component.types.includes('locality'));
+        }
+    } )
 }
