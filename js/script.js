@@ -1,5 +1,5 @@
 const url = 'https://api-football-v1.p.rapidapi.com/v3/venues?country=Usa';
-const options = {
+const process = {
 	method: 'GET',
 	headers: {
 		'X-RapidAPI-Key': 'cfcdfd8660mshcf1e95e5a80388ep1455edjsn19cece7560ca',
@@ -14,8 +14,36 @@ fetch(url, options)
         console.log(data);    
     })
 
- 
+    const link = 'https://google-api31.p.rapidapi.com/map';
+    const options = {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            'X-RapidAPI-Key': 'cc6662c9a3msh28bb13fdd1e33c2p1bf432jsn2e8126b92b70',
+            'X-RapidAPI-Host': 'google-api31.p.rapidapi.com'
+        },
+        body: {
+            text: 'white house',
+            place: 'washington DC',
+            street: '',
+            city: '',
+            country: '',
+            state: '',
+            postalcode: '',
+            latitude: '',
+            longitude: '',
+            radius: ''
+        }
+    };
     
+    try {
+        const response = await fetch(link, process);
+        const result = await response.text();
+        console.log(result);
+    } catch (error) {
+        console.error(error);
+    } 
+
 function validateInput(){
     var userSearch=document.getElementById("search-input").value;
     var displayMessage=document.getElementById(display-error);
@@ -27,17 +55,4 @@ function validateInput(){
     }
 }
 
-function verifyCity(data){
-    var input=document.getElementById('search-input').value;
-    var locator= new google.maps.Geocoder();
-    locator.geocode({address: input}, function(results, status){
-        if (status ==google.map.GeocoderStatus.OK && results && results.length>0){
-            var locationRestrictions=results[0].adress_component;
-            var cityConfirmation=locationRestrictions.some(component => component.types.includes('locality'));
-        if(!cityConfirmation){
-            alert("Sorry,please enter a valid city within the U.S.");
-        }
-        
-        }} )
-}
 
