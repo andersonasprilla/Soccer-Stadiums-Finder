@@ -14,21 +14,8 @@ fetch(url, options)
         console.log(data);    
     })
 
-    const link = 'https://google-maps-geocoding.p.rapidapi.com/geocode/json?address=164%20Townsend%20St.%2C%20San%20Francisco%2C%20CA&language=en';
-    const process = {
-    method: 'GET',
-    headers: {
-        'X-RapidAPI-Key': 'cc6662c9a3msh28bb13fdd1e33c2p1bf432jsn2e8126b92b70',
-        'X-RapidAPI-Host': 'google-maps-geocoding.p.rapidapi.com'
-    }
-};
-fetch(link, process).then(function (response){
-    return response.json();
-})
-.then(function(data){
-    verifyCity(data)
-});
-
+ 
+    
 function validateInput(){
     var userSearch=document.getElementById("search-input").value;
     var displayMessage=document.getElementById(display-error);
