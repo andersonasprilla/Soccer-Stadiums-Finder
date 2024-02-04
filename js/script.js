@@ -22,7 +22,11 @@ fetch(url, options)
         'X-RapidAPI-Host': 'google-maps-geocoding.p.rapidapi.com'
     }
 };
-function verifyCity(){
+fetch(link, process).then(function (response){
+    return response.json();
+})
+
+function verifyCity(data){
     var input=document.getElementById('search-input').value;
     var locator= new google.maps.Geocoder();
     locator.geocode({address: input}, function(results, status){
