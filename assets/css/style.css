@@ -11,7 +11,7 @@ nav.navbar {
 
 /* Navbar brand styles */
 a.navbar-brand {
-    color: #1976D2; /* Brand color */
+    color: #1a0566; /* Brand color */
     font-weight: bold;
 }
 
@@ -27,7 +27,7 @@ ul.navbar-nav {
 
 /* Navbar link styles */
 .navbar-nav .nav-link {
-    color: #1976D2; /* Link color */
+    color: rgb(3, 42, 23); /* Link color */
 }
 
 /* Active link styles */
@@ -37,5 +37,5 @@ ul.navbar-nav {
 
 /* Hover link styles */
 .navbar-nav .nav-item .nav-link:hover {
-    color: #004080; /* Hover color */
+    color: #9ec79c; /* Hover color */
 }
