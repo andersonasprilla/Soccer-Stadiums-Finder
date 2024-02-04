@@ -31,7 +31,13 @@ fetch(link, process).then(function (response){
 
 function validateInput(){
     var userSearch=document.getElementById("search-input").value;
-    var displayMessage=document.getElementById(display-error)
+    var displayMessage=document.getElementById(display-error);
+
+    if(displayMessage.trim()===""){
+        displayMessage.textContent="Sorry,please enter a valid city...";
+    } else {
+        displayMessage.textContent="";
+    }
 }
 
 function verifyCity(data){
