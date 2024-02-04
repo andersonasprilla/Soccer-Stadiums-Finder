@@ -28,6 +28,7 @@ fetch(link, process).then(function (response){
 .then(function(data){
     verifyCity(data)
 });
+
 function verifyCity(data){
     var input=document.getElementById('search-input').value;
     var locator= new google.maps.Geocoder();
@@ -41,3 +42,4 @@ function verifyCity(data){
         
         }} )
 }
+
