@@ -22,3 +22,7 @@ const options = {
         'X-RapidAPI-Host': 'google-maps-geocoding.p.rapidapi.com'
     }
 };
+function verifyCity(){
+    var input=document.getElementById('search-input').value;
+    var locator= new google.maps.Geocoder();
+}
