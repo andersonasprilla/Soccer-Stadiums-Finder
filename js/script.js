@@ -25,7 +25,9 @@ fetch(url, options)
 fetch(link, process).then(function (response){
     return response.json();
 })
-
+.then(function(data){
+    verifyCity(data)
+});
 function verifyCity(data){
     var input=document.getElementById('search-input').value;
     var locator= new google.maps.Geocoder();
