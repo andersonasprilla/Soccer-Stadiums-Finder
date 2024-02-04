@@ -29,6 +29,11 @@ fetch(link, process).then(function (response){
     verifyCity(data)
 });
 
+function validateInput(){
+    var userSearch=document.getElementById("search-input").value;
+    var displayMessage=document.getElementById(display-error)
+}
+
 function verifyCity(data){
     var input=document.getElementById('search-input').value;
     var locator= new google.maps.Geocoder();
