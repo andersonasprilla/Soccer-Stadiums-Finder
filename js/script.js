@@ -29,6 +29,9 @@ function verifyCity(){
         if (status ==google.map.GeocoderStatus.OK && results && results.length>0){
             var locationRestrictions=results[0].adress_component;
             var cityConfirmation=locationRestrictions.some(component => component.types.includes('locality'));
+        if(!cityConfirmation){
+            alert("Sorry,please enter a valid city within the U.S.");
         }
-    } )
+        
+        }} )
 }
