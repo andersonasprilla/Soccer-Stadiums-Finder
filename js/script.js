@@ -93,10 +93,16 @@ fetch(url, options)
             createCard.style.zIndex = 1;
             createCard.style.position='fixed';
             createCard.style.textAlign = 'center';
+            
+                document.body.appendChild(createCard);
+                setTimeout(removeMultipleCityState, 3000);
 
         }
         
         function removeMultipleCityState(){
-
+            var createCard = document.querySelector('.multiple-states');
+            if (createCard){
+                createCard.remove();
+            }
         }
 
