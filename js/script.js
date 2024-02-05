@@ -49,15 +49,17 @@ fetch(url, options)
         function validateInput(){
             var userSearch=document.getElementById("search-input").value;
             var displayMessage=document.getElementById("display-error");
-
+            var citySearch=document.getElementById("city-result");
             if(userSearch.trim()===""){
         displayMessage.textContent="Sorry,please enter a valid city...";
          } else {
         displayMessage.textContent="";
             }
         }
+        
         async function searchCity(){
             var userSearch = document.getElementById('search-input').value;
-            var displayMessage = document.getElementById("city-result")
+            var displayMessage = document.getElementById("display-error");
+            var citySearch = document.getElementById("city-result");
         }
 
