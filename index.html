@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@200&family=Lato:ital,wght@0,700;1,400&family=Protest+Guerrilla&family=Quicksand:wght@300&family=Staatliches&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Stadium by U.S</title>
 </head>
@@ -13,18 +14,10 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Stadiums Near You</a>
-                <div class="input-group">
-                    <div class="form-outline" data-mdb-input-init>
-                        <input id="search-input" type="search" id="form1" class="form-control" />
-                        <label class="form-label" for="form1">Search</label>
-                    </div>
-                    <button id="search-button" type="button" class="btn btn-primary">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-                <ul class="navbar-nav">
+            <div class="container-fluid d-flex w-100 flex-column flex-md-row">
+                <a class="navbar-brand align-items-start" href="#">Stadiums Near You</a>
+               
+                <ul class="navbar-nav align-items-center">
                     <li class="nav-item">
                         <a class="nav-link" href="#">Home</a>
                     </li>
@@ -36,12 +29,22 @@
                     </li>
                     <!-- Add more navigation links as needed -->
                 </ul>
+
+                <div class="input-group align-items-end">
+                    <div class="form-outline" data-mdb-input-init>
+                        <input id="search-input" type="search" id="form1" class="form-control" />
+                        <label class="form-label" for="form1">Search</label>
+                    </div>
+                    <button id="search-button" type="button" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
             </div>
             </div>
         </nav>
     </header>
-    <main>
-        <section>
+    <main id="main-container">
+        <section class="d-flex justify-content-center">
             <div class="card" style="width: 18rem;">
                 <img src="file:///Users/thegrljai/Desktop/Bootcamp/The-Code-Barbie/project/assets/images/stadium-img.jpg" class="card-img-top"
                     alt="Chicago Skyscrapers" />
@@ -65,7 +68,6 @@
 
     <script src="./js/script.js"></script>
 
-    <footer>
         <footer class="bg-body-tertiary text-center">
             <!-- Grid container -->
             <div class="container p-4 pb-0">
