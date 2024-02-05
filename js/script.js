@@ -45,16 +45,19 @@ fetch(url, options)
     } 
     const apiKey='cc6662c9a3msh28bb13fdd1e33c2p1bf432jsn2e8126b92b70';
     const cityUrl='https://google-api31.p.rapidapi.com/map';
+        
+        function validateInput(){
+            var userSearch=document.getElementById("search-input").value;
+            var displayMessage=document.getElementById("display-error");
 
-function validateInput(){
-    var userSearch=document.getElementById("search-input").value;
-    var displayMessage=document.getElementById("display-error");
-
-    if(userSearch.trim()===""){
+            if(userSearch.trim()===""){
         displayMessage.textContent="Sorry,please enter a valid city...";
-    } else {
+         } else {
         displayMessage.textContent="";
-    }
-}
-
+            }
+        }
+        async function searchCity(){
+            var userSearch = document.getElementById('search-input').value;
+            var displayMessage = document.getElementById("city-result")
+        }
 
