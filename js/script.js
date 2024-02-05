@@ -63,3 +63,4 @@ fetch(url, options)
             var citySearch = document.getElementById("city-result");
         }
 
+        
