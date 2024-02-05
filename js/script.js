@@ -15,16 +15,16 @@ $(document).ready(function () {
     $('#search-form').submit(submitHandler);
 
     function getFootballAPI() {
-        const url = 'https://api-football-v1.p.rapidapi.com/v3/venues?country=Usa';
-
         // Set input before calling the API
         input = $('#search-input').val();
 
-         // Check if the user has entered anything
-    if (!input) {
-        displayError('Input cannot be blank.');
-        return;
-    }
+        // Check if the user has entered anything
+        if (!input) {
+            displayCityNotFoundError('Input cannot be blank');
+            return;
+        }
+
+        const url = 'https://api-football-v1.p.rapidapi.com/v3/venues?country=Usa';
 
 
         fetch(url, options)
@@ -32,7 +32,11 @@ $(document).ready(function () {
                 return response.json();
             })
             .then(function (data) {
-                displayCard(data);
+                if (data && data.response && data.response.length > 0) {
+                    displayCard(data);
+                } else {
+                    displayCityNotFoundError('Not a valid city');
+                }
             });
 
     }
@@ -89,7 +93,7 @@ $(document).ready(function () {
 
         if (data && data.response) {
             for (var i = 0; i < data.response.length; i++) {
-                var city = data.response[i].city 
+                var city = data.response[i].city
                 if (city.toLowerCase().includes(input)) {
                     var stadiumData = createCard();
                     var urlLocation = data.response[i].name.replace(/ /g, '+')
@@ -107,42 +111,43 @@ $(document).ready(function () {
                     $('.surface', stadiumData).text('Surface: ' + data.response[i].surface);
 
                     $(".display-stadium-card").append(stadiumData);
-                    }
                 }
             }
         }
-
-    })
-
-    function displayError(message) {
-        // Clear existing cards before displaying the error
-        $(".display-stadium-card").empty();
-    
-        // Create an error card element with enhanced styling
-        var errorCard = $('<div>').addClass('card border-danger mb-3').css({
-            'max-width': '18rem',
-            'margin': 'auto',
-            'margin-top': '20px',
-            'border-color': '#dc3545'
-        });
-    
-        var cardHeader = $('<div>').addClass('card-header bg-danger text-white').text('Error');
-        var cardBody = $('<div>').addClass('card-body text-danger');
-        var errorMessage = $('<p>').addClass('card-text text-center').text(message);
-    
-        // Append elements to the error card
-        cardBody.append(errorMessage);
-        errorCard.append(cardHeader);
-        errorCard.append(cardBody);
-    
-        // Append the error card to the display container
-        $(".display-stadium-card").append(errorCard);
-    
-        // Remove the error message after 3 seconds
-        setTimeout(function () {
-            errorCard.remove();
-        }, 3000);
     }
-    
-    
+
+})
+
+function displayCityNotFoundError(error) {
+    // Clear existing cards before displaying the error
+    $(".display-stadium-card").empty();
+
+    // Create a city not found error card element
+    var errorCard = $('<div>').addClass('card border-danger mb-3').css({
+        'max-width': '18rem',
+        'margin': 'auto',
+        'margin-top': '20px',
+        'border-color': '#dc3545'
+    });
+
+    var cardHeader = $('<div>').addClass('card-header bg-danger text-white').text('Error');
+    var cardBody = $('<div>').addClass('card-body text-danger');
+    var errorMessage = $('<p>').addClass('card-text text-center').text(error);
+
+    // Append elements to the city not found error card
+    cardBody.append(errorMessage);
+    errorCard.append(cardHeader);
+    errorCard.append(cardBody);
+
+    // Append the city not found error card to the display container
+    $(".display-stadium-card").append(errorCard);
+
+    // Remove the error message after 3 seconds
+    setTimeout(function () {
+        errorCard.remove();
+    }, 3000);
+}
+
+
+
 
