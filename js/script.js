@@ -55,7 +55,7 @@ fetch(url, options)
             setTimeout(() =>{
                 removeMultipleCityState();}, 3000);
             } else {
-                cities(cityStates[0]);
+                cityInformation(cityStates[0]);
             }
         } catch (error){
             console.error(error);
@@ -78,23 +78,25 @@ fetch(url, options)
         }
     }
 
-    // try{
-    //     const response = fetch(mapsUrl, mapsOptions);
-    //     const data = response.json();
-    //     const cityStates = data.response;
+
+        function cityInformation(cityStates){
+            console.log("City:", cityStates.city);
+            console.log("State:", cityStates.state);
+        }
+
+        function multipleCityStates(){
+            var createCard =document.createElement('div')
+            createCard.className = 'multiple-states';
+            createCard.textContent = 'City found in multiple states please specify the state';
+            createCard.style.backgroundColor = 'red';
+            createCard.style.color = 'white';
+            createCard.style.zIndex = 1;
+            createCard.style.position='fixed';
+            createCard.style.textAlign = 'center';
+
+        }
         
-    //     if(cityStates.length > 1){
-    //         multipleCityStates();
-    //         setTimeout(() =>{
-    //             removeMultipleCityState();}, 3000);
-    //         } else {
-    //             cities(cityStates[0]);
-    //         }
-    //     } catch (error){
-    //         console.error(error);
-    //     }    
-    
+        function removeMultipleCityState(){
 
-
-
+        }
 
