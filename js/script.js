@@ -22,7 +22,7 @@ $(document).ready(function () {
 
          // Check if the user has entered anything
     if (!input) {
-        displayError('Please enter a search query.');
+        displayError('Input cannot be blank.');
         return;
     }
 
@@ -118,13 +118,21 @@ $(document).ready(function () {
         // Clear existing cards before displaying the error
         $(".display-stadium-card").empty();
     
-        // Create an error card element
-        var errorCard = $('<div>').addClass('card text-white bg-danger').css('width', '18rem');
-        var cardBody = $('<div>').addClass('card-body');
+        // Create an error card element with enhanced styling
+        var errorCard = $('<div>').addClass('card border-danger mb-3').css({
+            'max-width': '18rem',
+            'margin': 'auto',
+            'margin-top': '20px',
+            'border-color': '#dc3545'
+        });
+    
+        var cardHeader = $('<div>').addClass('card-header bg-danger text-white').text('Error');
+        var cardBody = $('<div>').addClass('card-body text-danger');
         var errorMessage = $('<p>').addClass('card-text text-center').text(message);
     
         // Append elements to the error card
         cardBody.append(errorMessage);
+        errorCard.append(cardHeader);
         errorCard.append(cardBody);
     
         // Append the error card to the display container
@@ -137,3 +145,4 @@ $(document).ready(function () {
     }
     
     
+
