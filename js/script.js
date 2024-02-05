@@ -26,7 +26,9 @@ $(document).ready(function () {
 
         const url = 'https://api-football-v1.p.rapidapi.com/v3/venues?country=Usa';
 
-
+        // Save the input to local storage
+        saveToLocalStorage(input);
+        
         fetch(url, options)
             .then(function (response) {
                 return response.json();
@@ -116,37 +118,82 @@ $(document).ready(function () {
         }
     }
 
+    function displayCityNotFoundError(error) {
+        // Clear existing cards before displaying the error
+        $(".display-stadium-card").empty();
+    
+        // Create a city not found error card element
+        var errorCard = $('<div>').addClass('card border-danger mb-3').css({
+            'max-width': '18rem',
+            'margin': 'auto',
+            'margin-top': '20px',
+            'border-color': '#dc3545'
+        });
+    
+        var cardHeader = $('<div>').addClass('card-header bg-danger text-white').text('Error');
+        var cardBody = $('<div>').addClass('card-body text-danger');
+        var errorMessage = $('<p>').addClass('card-text text-center').text(error);
+    
+        // Append elements to the city not found error card
+        cardBody.append(errorMessage);
+        errorCard.append(cardHeader);
+        errorCard.append(cardBody);
+    
+        // Append the city not found error card to the display container
+        $(".display-stadium-card").append(errorCard);
+    
+        // Remove the error message after 3 seconds
+        setTimeout(function () {
+            errorCard.remove();
+        }, 3000);
+    }
+
+    // Load venues history from local storage
+    loadVenuesHistory();
+
+    function loadVenuesHistory() {
+        // Load venues history from local storage
+        var venuesHistory = JSON.parse(localStorage.getItem('venuesHistory')) || [];
+
+        // Create buttons for venues history
+        createHistoryButtons(venuesHistory);
+    }
+
+    function saveToLocalStorage(city) {
+        // Save to local storage
+        var venuesHistory = JSON.parse(localStorage.getItem('venuesHistory')) || [];
+        
+        // Avoid duplicate entries
+        if (!venuesHistory.includes(city)) {
+            venuesHistory.push(city);
+            localStorage.setItem('venuesHistory', JSON.stringify(venuesHistory));
+
+            // Update buttons for venues history
+            createHistoryButtons(venuesHistory);
+        }
+    }
+
+    function createHistoryButtons(venuesHistory) {
+        // Clear existing history buttons
+        $('#venues-history').empty();
+
+        // Create buttons for each city in venues history
+        venuesHistory.forEach(function (city) {
+            var historyButton = $('<button>').addClass('btn btn-outline-secondary me-2').text(city);
+            historyButton.click(function () {
+                // Set the input to the clicked city and trigger form submission
+                $('#search-input').val(city);
+                getFootballAPI();
+            });
+
+            $('#venues-history').append(historyButton);
+        });
+    }
+
+
 })
 
-function displayCityNotFoundError(error) {
-    // Clear existing cards before displaying the error
-    $(".display-stadium-card").empty();
 
-    // Create a city not found error card element
-    var errorCard = $('<div>').addClass('card border-danger mb-3').css({
-        'max-width': '18rem',
-        'margin': 'auto',
-        'margin-top': '20px',
-        'border-color': '#dc3545'
-    });
-
-    var cardHeader = $('<div>').addClass('card-header bg-danger text-white').text('Error');
-    var cardBody = $('<div>').addClass('card-body text-danger');
-    var errorMessage = $('<p>').addClass('card-text text-center').text(error);
-
-    // Append elements to the city not found error card
-    cardBody.append(errorMessage);
-    errorCard.append(cardHeader);
-    errorCard.append(cardBody);
-
-    // Append the city not found error card to the display container
-    $(".display-stadium-card").append(errorCard);
-
-    // Remove the error message after 3 seconds
-    setTimeout(function () {
-        errorCard.remove();
-    }, 3000);
-}
 
 
 
