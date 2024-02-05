@@ -1,9 +1,12 @@
+// Declare variables
 var input;
 var mapsKey = "AIzaSyBgJ5N-Ae3YcSnk_RYvBqtrq9l9f_hZMZI"
 var mapSrc;
 
+// Execute code when the document is ready
 $(document).ready(function () {
 
+    // Define options for making API requests
     const options = {
         method: 'GET',
         headers: {
@@ -12,8 +15,16 @@ $(document).ready(function () {
         }
     };
 
+    // Attach a submit handler function to the form
     $('#search-form').submit(submitHandler);
 
+    // Function to handle form submission
+    function submitHandler(event) {
+        event.preventDefault();
+        getFootballAPI(); // Call getFootballAPI when the form is submitted
+    }
+
+    // Function to make API request to retrieve football data
     function getFootballAPI() {
         // Set input before calling the API
         input = $('#search-input').val();
@@ -29,6 +40,7 @@ $(document).ready(function () {
         // Save the input to local storage
         saveToLocalStorage(input);
 
+        // Fetch data from the API
         fetch(url, options)
             .then(function (response) {
                 return response.json();
@@ -43,11 +55,7 @@ $(document).ready(function () {
 
     }
 
-    function submitHandler(event) {
-        event.preventDefault();
-        getFootballAPI(); // Call getFootballAPI when the form is submitted
-    }
-
+    // Function to create a card element
     function createCard() {
         // Create card element
         var card = $('<div>').addClass('card').css('width', '18rem');
@@ -89,6 +97,7 @@ $(document).ready(function () {
     }
 
 
+    // Function to display the card with stadium information
     function displayCard(data) {
         // Clear existing cards before displaying new ones
         $(".display-stadium-card").empty();
@@ -118,10 +127,11 @@ $(document).ready(function () {
         }
     }
 
+    // Function to display an error card when a city is not found
     function displayCityNotFoundError(error) {
         // Clear existing cards before displaying the error
         $(".display-stadium-card").empty();
-    
+
         // Create a city not found error card element
         var errorCard = $('<div>').addClass('card border-danger mb-3').css({
             'max-width': '18rem',
@@ -129,32 +139,33 @@ $(document).ready(function () {
             'margin-top': '20px',
             'border-color': '#dc3545'
         });
-    
+
         var cardHeader = $('<div>').addClass('card-header bg-danger text-white').text('Error');
         var cardBody = $('<div>').addClass('card-body text-danger');
         var errorMessage = $('<p>').addClass('card-text text-center').text(error);
-    
+
         // Append elements to the city not found error card
         cardBody.append(errorMessage);
         errorCard.append(cardHeader);
         errorCard.append(cardBody);
-    
+
         // Append the city not found error card to the display container
         $(".display-stadium-card").append(errorCard);
-    
+
         // Remove the error message after 3 seconds
         setTimeout(function () {
             errorCard.remove();
         }, 3000);
     }
 
-   // Handle click event for Venues History link
-$('#venues-history-link').click(function () {
-    // Load and show the venues history when the link is clicked
-    loadVenuesHistory();
-});
+    // Handle click event for Venues History link
+    $('#venues-history-link').click(function () {
+        // Load and show the venues history when the link is clicked
+        loadVenuesHistory();
+    });
 
 
+    // Function to load venues history from local storage
     function loadVenuesHistory() {
         // Load venues history from local storage
         var venuesHistory = JSON.parse(localStorage.getItem('venuesHistory')) || [];
@@ -163,10 +174,11 @@ $('#venues-history-link').click(function () {
         createHistoryButtons(venuesHistory);
     }
 
+    // Function to save a city to local storage
     function saveToLocalStorage(city) {
         // Save to local storage
         var venuesHistory = JSON.parse(localStorage.getItem('venuesHistory')) || [];
-        
+
         // Avoid duplicate entries
         if (!venuesHistory.includes(city)) {
             venuesHistory.push(city);
@@ -177,27 +189,26 @@ $('#venues-history-link').click(function () {
         }
     }
 
+    // Function to create buttons for venues history
     function createHistoryButtons(venuesHistory) {
-    // Clear existing history buttons
-    $('#venues-history').empty();
+        // Clear existing history buttons
+        $('#venues-history').empty();
 
-    // Create buttons for each city in venues history
-    venuesHistory.forEach(function (city) {
-        var historyButton = $('<button>').addClass('btn btn-outline-secondary me-2').text(city);
-        historyButton.click(function () {
-            // Set the input to the clicked city and trigger form submission
-            $('#search-input').val(city);
-            getFootballAPI();
+        // Create buttons for each city in venues history
+        venuesHistory.forEach(function (city) {
+            var historyButton = $('<button>').addClass('btn btn-outline-secondary me-2').text(city);
+            historyButton.click(function () {
+                // Set the input to the clicked city and trigger form submission
+                $('#search-input').val(city);
+                getFootballAPI();
+            });
+
+            $('#venues-history').append(historyButton);
         });
 
-        $('#venues-history').append(historyButton);
-    });
-
-    // Show the history buttons
-    $('#venues-history').show();
-}
-
-
+        // Show the history buttons
+        $('#venues-history').show();
+    }
 
 })
 
