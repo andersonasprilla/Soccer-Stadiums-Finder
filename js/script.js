@@ -43,6 +43,8 @@ fetch(url, options)
     } catch (error) {
         console.error(error);
     } 
+    const apiKey='cc6662c9a3msh28bb13fdd1e33c2p1bf432jsn2e8126b92b70';
+    const cityUrl='https://google-api31.p.rapidapi.com/map';
 
 function validateInput(){
     var userSearch=document.getElementById("search-input").value;
