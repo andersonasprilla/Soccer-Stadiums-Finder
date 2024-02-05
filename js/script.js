@@ -13,16 +13,16 @@ fetch(url, options)
     .then(function (data) {
         console.log(data);    
     })
-
-    const link = 'https://google-api31.p.rapidapi.com/map';
-    const process = {
+(async function(){
+    const url = 'https://google-api31.p.rapidapi.com/map';
+    const options = {
         method: 'POST',
         headers: {
             'content-type': 'application/json',
             'X-RapidAPI-Key': 'cc6662c9a3msh28bb13fdd1e33c2p1bf432jsn2e8126b92b70',
             'X-RapidAPI-Host': 'google-api31.p.rapidapi.com'
         },
-        body: {
+        body: JSON.stringify({
             text: 'white house',
             place: 'washington DC',
             street: '',
@@ -33,11 +33,11 @@ fetch(url, options)
             latitude: '',
             longitude: '',
             radius: ''
-        }
+        })
     };
     
     try {
-        const response = await fetch(link, process);
+        const response = await fetch(url, options);
         const result = await response.text();
         console.log(result);
     } catch (error) {
@@ -46,21 +46,20 @@ fetch(url, options)
     const apiKey='cc6662c9a3msh28bb13fdd1e33c2p1bf432jsn2e8126b92b70';
     const cityUrl='https://google-api31.p.rapidapi.com/map';
         
-        function validateInput(){
-            var userSearch=document.getElementById("search-input").value;
-            var displayMessage=document.getElementById("display-error");
-            var citySearch=document.getElementById("city-result");
-            if(userSearch.trim()===""){
-        displayMessage.textContent="Sorry,please enter a valid city...";
-         } else {
-        displayMessage.textContent="";
-            }
-        }
-        
-        async function searchCity(){
+         function searchCity(){
             var userSearch = document.getElementById('search-input').value;
             var displayMessage = document.getElementById("display-error");
             var citySearch = document.getElementById("city-result");
+            validateInput();
         }
-
-        
+    })
+    function validateInput(){
+        var userSearch=document.getElementById("search-input").value;
+        var displayMessage=document.getElementById("display-error");
+        if(userSearch.trim()===""){
+    displayMessage.textContent="Sorry,please enter a valid city...";
+     } else {
+    displayMessage.textContent="";
+        }
+    }
+    

@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stadium by U.S</title>
+    <script src="https://google-api31.p.rapidapi.com/map"></script>
+    <script src="./js/script.js"></script>
 </head>
 <body>
-    <input type="text" class="input" placeholder="Enter a city...">
-    <button id="search-input" class="custom-button" onclick="validateInput()">Search</button>
-    <p class="display-error" id="display-message"></p>
+    <input type="text" id="search-input" placeholder="Enter a city...">
+    <button class="custom-button" onclick="validateInput()">Search</button>
+    <p class="display-error" id="display-error"></p>
 </body>
 </html>
