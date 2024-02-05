@@ -105,7 +105,8 @@ $(document).ready(function () {
         if (data && data.response) {
             for (var i = 0; i < data.response.length; i++) {
                 var city = data.response[i].city
-                if (city.toLowerCase().includes(input)) {
+                if (city.toLowerCase().includes(input.toLowerCase())) {
+
                     var stadiumData = createCard();
                     var urlLocation = data.response[i].name.replace(/ /g, '+')
 
