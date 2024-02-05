@@ -20,6 +20,13 @@ $(document).ready(function () {
         // Set input before calling the API
         input = $('#search-input').val();
 
+         // Check if the user has entered anything
+    if (!input) {
+        displayError('Please enter a search query.');
+        return;
+    }
+
+
         fetch(url, options)
             .then(function (response) {
                 return response.json();
@@ -107,21 +114,20 @@ $(document).ready(function () {
 
     })
 
-    const url = 'https://google-maps-geocoding.p.rapidapi.com/geocode/json?address=164%20Townsend%20St.%2C%20San%20Francisco%2C%20CA&language=en';
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': 'cc6662c9a3msh28bb13fdd1e33c2p1bf432jsn2e8126b92b70',
-            'X-RapidAPI-Host': 'google-maps-geocoding.p.rapidapi.com'
-        }
-    };
-       function verifyCity(){
-        var input=document.getElementById('search-input').value;
-        var locator= new google.maps.Geocoder();
-        locator.geocode({address: input}, function(results, status){
-            if (status ==google.map.GeocoderStatus.OK && results && results.length>0){
-                var locationRestrictions=results[0].adress_component;
-                var cityConfirmation=locationRestrictions.some(component => component.types.includes('locality'));    
-            }
-        } )
-       }  
+    function displayError(message) {
+        // Clear existing cards before displaying the error
+        $(".display-stadium-card").empty();
+    
+        // Create an error card element
+        var errorCard = $('<div>').addClass('card text-white bg-danger').css('width', '18rem');
+        var cardBody = $('<div>').addClass('card-body');
+        var errorMessage = $('<p>').addClass('card-text text-center').text(message);
+    
+        // Append elements to the error card
+        cardBody.append(errorMessage);
+        errorCard.append(cardBody);
+    
+        // Append the error card to the display container
+        $(".display-stadium-card").append(errorCard);
+    }
+    
