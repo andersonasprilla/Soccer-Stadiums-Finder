@@ -28,7 +28,7 @@ $(document).ready(function () {
 
         // Save the input to local storage
         saveToLocalStorage(input);
-        
+
         fetch(url, options)
             .then(function (response) {
                 return response.json();
@@ -148,8 +148,12 @@ $(document).ready(function () {
         }, 3000);
     }
 
-    // Load venues history from local storage
+   // Handle click event for Venues History link
+$('#venues-history-link').click(function () {
+    // Load and show the venues history when the link is clicked
     loadVenuesHistory();
+});
+
 
     function loadVenuesHistory() {
         // Load venues history from local storage
@@ -174,21 +178,25 @@ $(document).ready(function () {
     }
 
     function createHistoryButtons(venuesHistory) {
-        // Clear existing history buttons
-        $('#venues-history').empty();
+    // Clear existing history buttons
+    $('#venues-history').empty();
 
-        // Create buttons for each city in venues history
-        venuesHistory.forEach(function (city) {
-            var historyButton = $('<button>').addClass('btn btn-outline-secondary me-2').text(city);
-            historyButton.click(function () {
-                // Set the input to the clicked city and trigger form submission
-                $('#search-input').val(city);
-                getFootballAPI();
-            });
-
-            $('#venues-history').append(historyButton);
+    // Create buttons for each city in venues history
+    venuesHistory.forEach(function (city) {
+        var historyButton = $('<button>').addClass('btn btn-outline-secondary me-2').text(city);
+        historyButton.click(function () {
+            // Set the input to the clicked city and trigger form submission
+            $('#search-input').val(city);
+            getFootballAPI();
         });
-    }
+
+        $('#venues-history').append(historyButton);
+    });
+
+    // Show the history buttons
+    $('#venues-history').show();
+}
+
 
 
 })

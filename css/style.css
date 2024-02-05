@@ -64,6 +64,10 @@ header {
     background-color: #f8f9fa;
 }
 
+#venues-history {
+    display: none;
+}
+
 
 @media (max-width: 768px) {
     .input-group {
