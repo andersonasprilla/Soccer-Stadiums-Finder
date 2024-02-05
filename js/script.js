@@ -13,10 +13,29 @@ fetch(url, options)
     .then(function (data) {
         console.log(data);    
     })
+
+    (async function(){ const url = 'https://api-football-v1.p.rapidapi.com/v3/venues?country=Usa';
+        const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': 'cfcdfd8660mshcf1e95e5a80388ep1455edjsn19cece7560ca',
+            'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
+        }
+    };
+        try {
+            const response = await fetch(url, options);
+            const data = await response.json();
+            
+        }
+    
+
+    })
+
+
  function getMapsApi(){
     const mapsUrl = 'https://google-api31.p.rapidapi.com/map';
     const mapsOptions = {
-        method: 'POST',
+        method: 'GET',
         headers: {
             'content-type': 'application/json',
             'X-RapidAPI-Key': 'cc6662c9a3msh28bb13fdd1e33c2p1bf432jsn2e8126b92b70',
@@ -36,6 +55,7 @@ fetch(url, options)
         })
     }
     
+    getMapsApi();
 
     try {
         const response =fetch(mapsUrl, mapsOptions);
