@@ -25,35 +25,42 @@ $(document).ready(function () {
     }
 
     // Function to make API request to retrieve football data
-    function getFootballAPI() {
-        // Set input before calling the API
-        input = $('#search-input').val();
-
-        // Check if the user has entered anything
-        if (!input) {
-            displayCityNotFoundError('Input cannot be blank');
-            return;
-        }
-
-        const url = 'https://api-football-v1.p.rapidapi.com/v3/venues?country=Usa';
-
-        // Save the input to local storage
-        saveToLocalStorage(input);
-
-        // Fetch data from the API
-        fetch(url, options)
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                if (data && data.response && data.response.length > 0) {
-                    displayCard(data);
-                } else {
-                    displayCityNotFoundError('Not a valid city');
-                }
-            });
-
+function getFootballAPI() {
+    // Set input before calling the API
+    input = $('#search-input').val();
+    // Check if the user has entered anything
+    if (!input) {
+        displayCityNotFoundError('Input cannot be blank');
+        return;
     }
+
+    const url = 'https://api-football-v1.p.rapidapi.com/v3/venues?country=Usa';
+
+    // Save the input to local storage
+    saveToLocalStorage(input);
+
+    // Fetch data from the API
+    fetch(url, options)
+        .then(function (response) {
+            // Check if the response status is 200 (OK)
+            if (response.status === 200) {
+                return response.json();
+            } else {
+                // Display an error message for non-200 responses
+                displayCityNotFoundError('Error fetching data. Please try again.');
+                throw new Error('Non-200 response status');
+            }
+        })
+        .then(function (data) {
+            console.log(data)
+            if (data && data.response && data.response.length > 0) {
+                displayCard(data);
+            } else {
+                displayCityNotFoundError('Not a valid city');
+            }
+        });
+}
+
 
     // Function to create a card element
     function createCard() {
@@ -104,7 +111,7 @@ $(document).ready(function () {
 
         if (data && data.response) {
             for (var i = 0; i < data.response.length; i++) {
-                var city = data.response[i].city
+                var city = data.response[i].city.split(',')[0].trim()
                 if (city.toLowerCase().includes(input.toLowerCase())) {
 
                     var stadiumData = createCard();
@@ -128,36 +135,38 @@ $(document).ready(function () {
         }
     }
 
-    // Function to display an error card when a city is not found
-    function displayCityNotFoundError(error) {
-        // Clear existing cards before displaying the error
-        $(".display-stadium-card").empty();
+   // Function to display an error card when a city is not found
+function displayCityNotFoundError(error) {
+    // Clear existing cards before displaying the error
+    $(".display-stadium-card").empty();
 
-        // Create a city not found error card element
-        var errorCard = $('<div>').addClass('card border-danger mb-3').css({
-            'max-width': '18rem',
-            'margin': 'auto',
-            'margin-top': '20px',
-            'border-color': '#dc3545'
-        });
+   
+    // Create a city not found error card element
+    var errorCard = $('<div>').addClass('card border-danger mb-3').css({
+        'max-width': '18rem',
+        'margin': 'auto',
+        'margin-top': '20px',
+        'border-color': '#dc3545'
+    });
 
-        var cardHeader = $('<div>').addClass('card-header bg-danger text-white').text('Error');
-        var cardBody = $('<div>').addClass('card-body text-danger');
-        var errorMessage = $('<p>').addClass('card-text text-center').text(error);
+    var cardHeader = $('<div>').addClass('card-header bg-danger text-white').text('Error');
+    var cardBody = $('<div>').addClass('card-body text-danger');
+    var errorMessage = $('<p>').addClass('card-text text-center').text(error);
 
-        // Append elements to the city not found error card
-        cardBody.append(errorMessage);
-        errorCard.append(cardHeader);
-        errorCard.append(cardBody);
+    // Append elements to the city not found error card
+    cardBody.append(errorMessage);
+    errorCard.append(cardHeader);
+    errorCard.append(cardBody);
 
-        // Append the city not found error card to the display container
-        $(".display-stadium-card").append(errorCard);
+    // Append the city not found error card to the display container
+    $(".display-stadium-card").append(errorCard);
 
-        // Remove the error message after 3 seconds
-        setTimeout(function () {
-            errorCard.remove();
-        }, 3000);
-    }
+    // Remove the error message after 3 seconds
+    setTimeout(function () {
+        errorCard.remove();
+    }, 3000);
+}
+
 
     // Handle click event for Venues History link
     $('#venues-history-link').click(function () {
