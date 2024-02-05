@@ -13,9 +13,9 @@ fetch(url, options)
     .then(function (data) {
         console.log(data);    
     })
-(async function(){
-    const url = 'https://google-api31.p.rapidapi.com/map';
-    const options = {
+ function getMapsApi(){
+    const mapsUrl = 'https://google-api31.p.rapidapi.com/map';
+    const mapsOptions = {
         method: 'POST',
         headers: {
             'content-type': 'application/json',
@@ -34,26 +34,41 @@ fetch(url, options)
             longitude: '',
             radius: ''
         })
-    };
+    }
     
+
     try {
-        const response = await fetch(url, options);
-        const result = await response.text();
-        console.log(result);
+        const response =fetch(mapsUrl, mapsOptions);
+        const data =response.json();
+        console.log(data);
     } catch (error) {
         console.error(error);
-    } 
-    const apiKey='cc6662c9a3msh28bb13fdd1e33c2p1bf432jsn2e8126b92b70';
-    const cityUrl='https://google-api31.p.rapidapi.com/map';
+    }
+       
+    try{
+        const response = fetch(mapsUrl, mapsOptions);
+        const data = response.json();
+        const cityStates = data.response;
         
+        if(cityStates.length > 1){
+            multipleCityStates();
+            setTimeout(() =>{
+                removeMultipleCityState();}, 3000);
+            } else {
+                cities(cityStates[0]);
+            }
+        } catch (error){
+            console.error(error);
+        }  
+
          function searchCity(){
             var userSearch = document.getElementById('search-input').value;
             var displayMessage = document.getElementById("display-error");
             var citySearch = document.getElementById("city-result");
             validateInput();
         }
-    })
-    function validateInput(){
+    }
+        function validateInput(){
         var userSearch=document.getElementById("search-input").value;
         var displayMessage=document.getElementById("display-error");
         if(userSearch.trim()===""){
@@ -62,4 +77,24 @@ fetch(url, options)
     displayMessage.textContent="";
         }
     }
+
+    // try{
+    //     const response = fetch(mapsUrl, mapsOptions);
+    //     const data = response.json();
+    //     const cityStates = data.response;
+        
+    //     if(cityStates.length > 1){
+    //         multipleCityStates();
+    //         setTimeout(() =>{
+    //             removeMultipleCityState();}, 3000);
+    //         } else {
+    //             cities(cityStates[0]);
+    //         }
+    //     } catch (error){
+    //         console.error(error);
+    //     }    
     
+
+
+
+
