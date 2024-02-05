@@ -1,4 +1,12 @@
-.in
+.custom-button{
+    width: 150px; /* Set the desired width */
+    height: 40px; /* Set the desired height */
+    /* Additional styling properties */
+    background-color: #4CAF50; /* Background color */
+    color: white; /* Text color */
+    border: none; /* Remove default button border */
+    cursor: pointer;
+}
 
 .display-error{
     color: #fe2323;

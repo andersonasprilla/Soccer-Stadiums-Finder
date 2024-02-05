@@ -1,5 +1,5 @@
 const url = 'https://api-football-v1.p.rapidapi.com/v3/venues?country=Usa';
-const process = {
+const options = {
 	method: 'GET',
 	headers: {
 		'X-RapidAPI-Key': 'cfcdfd8660mshcf1e95e5a80388ep1455edjsn19cece7560ca',
@@ -15,7 +15,7 @@ fetch(url, options)
     })
 
     const link = 'https://google-api31.p.rapidapi.com/map';
-    const options = {
+    const process = {
         method: 'POST',
         headers: {
             'content-type': 'application/json',
@@ -46,9 +46,9 @@ fetch(url, options)
 
 function validateInput(){
     var userSearch=document.getElementById("search-input").value;
-    var displayMessage=document.getElementById(display-error);
+    var displayMessage=document.getElementById("display-error");
 
-    if(displayMessage.trim()===""){
+    if(userSearch.trim()===""){
         displayMessage.textContent="Sorry,please enter a valid city...";
     } else {
         displayMessage.textContent="";
