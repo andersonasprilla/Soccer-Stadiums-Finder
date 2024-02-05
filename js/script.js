@@ -129,5 +129,11 @@ $(document).ready(function () {
     
         // Append the error card to the display container
         $(".display-stadium-card").append(errorCard);
+    
+        // Remove the error message after 3 seconds
+        setTimeout(function () {
+            errorCard.remove();
+        }, 3000);
     }
+    
     
