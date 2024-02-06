@@ -32,8 +32,9 @@ ul.navbar-nav {
 /* Navbar link styles */
 .nav-link {
     color: #2e5339; /* Link color */
-    font-family: 'Alumni Sans', sans-serif;
-    font-size: 29px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 24px;
+    
 }
 
 /* Active link styles */
@@ -56,7 +57,7 @@ ul.navbar-nav {
 }
 
 .form-label{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'DM Sans', sans-serif;
 }
 
 .navbar-brand {
@@ -88,4 +89,7 @@ ul.navbar-nav {
     min-height: 78vh;
     padding-top: 55px;
     background-color: #f1faee;
+}
+#search-input {
+    font-family: 'DM Sans', sans-serif;
 }
