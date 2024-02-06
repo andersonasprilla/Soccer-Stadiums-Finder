@@ -87,8 +87,13 @@ footer {
     font-weight: bolder;
     color: #315c2b;
 }
+
 .mb-3 {
     font-family: 'Hind', sans-serif;
+    color: #d0efb1;
+}
+.mb-4 {
+    font-family: 'Montserrat', sans-serif;
     color: #d0efb1;
 }
 #search-button {
