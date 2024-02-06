@@ -1,84 +1,94 @@
-body {
-    
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+body, * {
     margin: 0;
-    font-family: 'Arial', sans-serif; 
+    padding: 0;
+    box-sizing: border-box;
 }
-
-.container {
-    text-align: center;
-}
-
-section {
-    margin-bottom: 20px;
-}
-
-header {
-    background-color: #343a40;
-    color: #ffffff;
-    padding: 10px;
-}
-
-.input-group {
-    margin-top: 20px;
-    max-width: 400px; 
-    margin: 0 auto; 
-}
-
-#search-input {
-    border-radius: 5px;
-    width: 70%; 
-    padding: 8px; 
-}
-
-#search-button {
-    border-radius: 5px;
-    margin-left: 10px; 
-}
-
-.display-stadium-card {
+/* Navbar styles */
+nav.navbar {
+    background-color: #E3F2FD; /* Light background color */
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
 }
-
-.card {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 18rem;
-    margin: 10px;
-    transition: transform 0.3s ease; 
+/* Navbar brand styles */
+a.navbar-brand {
+    color: #2E5339; /* Brand color */
 }
-
-.card:hover {
-    transform: scale(1.05);
+/* Navbar toggle button styles */
+button.navbar-toggler {
+    border: 2px; /* Remove border */
 }
-
-.card-title {
-    color: #007bff;
-    margin-bottom: 10px;
+/* Navbar links styles */
+ul.navbar-nav {
+    padding-top: 10px; /* Adjust top padding */
+    margin-left: 5%;
 }
-
-.list-group-item {
-    background-color: #f8f9fa;
+footer {
+    background-color: #1C2722;
+    color: white;
 }
-
-#venues-history {
-    display: none;
+/* Navbar link styles */
+.nav-link {
+    color: #2E5339; /* Link color */
+    font-family: 'DM Sans', sans-serif;
+    font-size: 24px;
 }
-
-
-@media (max-width: 768px) {
-    .input-group {
-        max-width: 100%;
-    }
-
-    #search-input {
-        width: 100%;
-    }
-
-    .card {
-        width: calc(50% - 20px);
-    }
+/* Active link styles */
+.navbar-nav .nav-item.active .nav-link {
+    font-weight: bold; /* Make active link bold */
+}
+/* Hover link styles */
+.navbar-nav .nav-item .nav-link:hover {
+    color: #9EC79C; /* Hover color */
+}
+.input-group {
+    display: flex;
+    align-items: center;
+    width: 20%;
+}
+.form-outline {
+    width: 100%;
+}
+.form-label{
+    font-family: 'DM Sans', sans-serif;
+}
+.navbar-brand {
+    font-family: 'Workbench', sans-serif;
+    font-size: 28px;
+}
+.navbar-brand:hover{
+    color: #63A46C;
+}
+.card-title{
+    font-family: 'DM Serif Display', serif;
+    text-align: center;
+    font-size: 32px;
+    font-weight: bolder;
+    color: #3E5128;
+}
+.list-group-item{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
+    color: #315C2B;
+}
+.mb-3 {
+    font-family: 'Hind', sans-serif;
+    color: #D0EFB1;
+}
+.mb-4 {
+    font-family: 'Montserrat', sans-serif;
+    color: #D0EFB1;
+}
+#search-button {
+    padding: 0.25rem 0.5rem;
+    background-color: #60712F; /* Unique color for the button */
+}
+#main-container {
+    min-height: 78vh;
+    padding-top: 55px;
+    background-color: #F1FAEE;
+}
+#search-input {
+    font-family: 'DM Sans', sans-serif;
+    color: #315C2B;
 }
