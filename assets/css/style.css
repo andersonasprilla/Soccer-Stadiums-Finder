@@ -53,11 +53,18 @@ ul.navbar-nav {
 }
 
 .navbar-brand {
-    font-family: 'Staatliches', sans-serif;
+    font-family: 'Lilita One', sans-serif;
 }
 
 .card-title{
-    font-family: "Alumni Sans", sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
+    text-align: center;
+    font-size: 32px;
+    font-weight: bolder;
+}
+
+.list-group{
+    font-family: 'Questrial', sans-serif;
 }
 #search-button {
     padding: 0.25rem 0.5rem;
@@ -66,5 +73,5 @@ ul.navbar-nav {
 
 #main-container {
     min-height: 78vh;
-    padding-top: 84px;
+    padding-top: 55px;
 }
