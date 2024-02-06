@@ -87,7 +87,10 @@ footer {
     font-weight: bolder;
     color: #315c2b;
 }
-
+.mb-3 {
+    font-family: 'Hind', sans-serif;
+    color: #d0efb1;
+}
 #search-button {
     padding: 0.25rem 0.5rem;
     background-color: #60712f; /* Unique color for the button */
@@ -95,7 +98,7 @@ footer {
 
 #main-container {
     min-height: 78vh;
-    padding-top: 65px;
+    padding-top: 55px;
     background-color: #f1faee;
 }
 #search-input {
