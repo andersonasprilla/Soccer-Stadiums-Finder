@@ -14,8 +14,8 @@ nav.navbar {
 
 /* Navbar brand styles */
 a.navbar-brand {
-    color: #1a0566; /* Brand color */
-    font-weight: bold;
+    color: #2e5339; /* Brand color */
+
 }
 
 /* Navbar toggle button styles */
@@ -30,8 +30,10 @@ ul.navbar-nav {
 }
 
 /* Navbar link styles */
-.navbar-nav .nav-link {
-    color: rgb(3, 42, 23); /* Link color */
+.nav-link {
+    color: #2e5339; /* Link color */
+    font-family: 'Alumni Sans', sans-serif;
+    font-size: 29px;
 }
 
 /* Active link styles */
@@ -53,9 +55,16 @@ ul.navbar-nav {
     width: 100%;
 }
 
+.form-label{
+    font-family: 'Montserrat', sans-serif;
+}
+
 .navbar-brand {
     font-family: 'Workbench', sans-serif;
     font-size: 28px;
+}
+.navbar-brand:hover{
+    color: #63a46c;
 }
 
 .card-title{
@@ -63,17 +72,20 @@ ul.navbar-nav {
     text-align: center;
     font-size: 32px;
     font-weight: bolder;
+    color: #3E5128;
 }
 
-.list-group{
-    font-family: 'Dosis', sans-serif;
+.list-group-item{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
 }
 #search-button {
     padding: 0.25rem 0.5rem;
-    background-color: #3498db; /* Unique color for the button */
+    background-color: #63a46c; /* Unique color for the button */
 }
 
 #main-container {
     min-height: 78vh;
     padding-top: 55px;
+    background-color: #f1faee;
 }
