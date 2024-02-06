@@ -43,7 +43,6 @@ $(document).ready(function () {
         fetch(url, options)
             .then(function (response) {
                 // Check if the response status is 200 (OK)
-                console.log(response)
                 if (response.status === 200) {
                     return response.json();
                 } else {
@@ -53,7 +52,6 @@ $(document).ready(function () {
                 }
             })
             .then(function (data) {
-                console.log(data)
                 if (data && data.response && data.response.length > 0) {
                     displayCard(data);
                 } else {

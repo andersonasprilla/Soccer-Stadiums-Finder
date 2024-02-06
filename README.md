@@ -1,3 +1,5 @@
+Link to the application: [Usa Soccer Stadiums](https://andersonasprilla.github.io/Soccer-Stadiums-Finder/)
+
 # Stadium Finder Web App
 
 This web application allows users to search for soccer stadiums in the United States and retrieve detailed information about each stadium. The application utilizes the API provided by [api-football-v1.p.rapidapi.com](https://api-football-v1.p.rapidapi.com/) to fetch data about stadiums.
@@ -15,6 +17,7 @@ This web application allows users to search for soccer stadiums in the United St
 - [API Key](#api-key)
 - [Contributing](#contributing)
 - [License](#license)
+- [Screenshot](#screenshot)
 
 ## Getting Started
 
@@ -64,3 +67,6 @@ Contributions are welcome! Feel free to open issues or pull requests to improve 
 
 # License
 This project is licensed under the MIT License - see the `LICENSE` file for details.
+
+# Screenshot
+![badges](./Screenshot%20.png)
