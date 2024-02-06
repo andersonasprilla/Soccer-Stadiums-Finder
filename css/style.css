@@ -1,33 +1,94 @@
- .custom-button{
-    width: 150px; /* Set the desired width */
-    height: 40px;
-     background-color: #4CAF50; 
-     color: white;
-     border: none ;
-     cursor: pointer; 
- }
-
-.display-error{
-    color: #fe2323;
-     font-style: italic;
-     font-weight: bold; 
- }
-
-.hidden {
-    display: none;
+body, * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-
-/* Add any other styling as needed */
-.card {
-    background-color: #fff; 
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    max-width: 300px;
+/* Navbar styles */
+nav.navbar {
+    background-color: #E3F2FD; /* Light background color */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* Navbar brand styles */
+a.navbar-brand {
+    color: #2E5339; /* Brand color */
+}
+/* Navbar toggle button styles */
+button.navbar-toggler {
+    border: 2px; /* Remove border */
+}
+/* Navbar links styles */
+ul.navbar-nav {
+    padding-top: 10px; /* Adjust top padding */
+    margin-left: 5%;
+}
+footer {
+    background-color: #1C2722;
+    color: white;
+}
+/* Navbar link styles */
+.nav-link {
+    color: #2E5339; /* Link color */
+    font-family: 'DM Sans', sans-serif;
+    font-size: 24px;
+}
+/* Active link styles */
+.navbar-nav .nav-item.active .nav-link {
+    font-weight: bold; /* Make active link bold */
+}
+/* Hover link styles */
+.navbar-nav .nav-item .nav-link:hover {
+    color: #9EC79C; /* Hover color */
+}
+.input-group {
+    display: flex;
+    align-items: center;
+    width: 20%;
+}
+.form-outline {
     width: 100%;
+}
+.form-label{
+    font-family: 'DM Sans', sans-serif;
+}
+.navbar-brand {
+    font-family: 'Workbench', sans-serif;
+    font-size: 28px;
+}
+.navbar-brand:hover{
+    color: #63A46C;
+}
+.card-title{
+    font-family: 'DM Serif Display', serif;
     text-align: center;
+    font-size: 32px;
+    font-weight: bolder;
+    color: #3E5128;
 }
-.hidden {
-    display: none;
+.list-group-item{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
+    color: #315C2B;
 }
-
+.mb-3 {
+    font-family: 'Hind', sans-serif;
+    color: #D0EFB1;
+}
+.mb-4 {
+    font-family: 'Montserrat', sans-serif;
+    color: #D0EFB1;
+}
+#search-button {
+    padding: 0.25rem 0.5rem;
+    background-color: #60712F; /* Unique color for the button */
+}
+#main-container {
+    min-height: 78vh;
+    padding-top: 55px;
+    background-color: #F1FAEE;
+}
+#search-input {
+    font-family: 'DM Sans', sans-serif;
+    color: #315C2B;
+}
