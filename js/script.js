@@ -168,11 +168,7 @@ function displayCityNotFoundError(error) {
 }
 
 
-    // Handle click event for Venues History link
-    $('#venues-history-link').click(function () {
-        // Load and show the venues history when the link is clicked
-        loadVenuesHistory();
-    });
+   
 
 
     // Function to load venues history from local storage
@@ -182,6 +178,8 @@ function displayCityNotFoundError(error) {
 
         // Create buttons for venues history
         createHistoryButtons(venuesHistory);
+        // Show the history buttons
+    $('#venues-history').show();
     }
 
     // Function to save a city to local storage
@@ -216,9 +214,15 @@ function displayCityNotFoundError(error) {
             $('#venues-history').append(historyButton);
         });
 
-        // Show the history buttons
-        $('#venues-history').show();
+        
     }
+
+    $('#venues-history').hide();
+     // Handle click event for Venues History link
+     $('#venues-history-link').click(function () {
+        // Load and show the venues history when the link is clicked
+        loadVenuesHistory();
+    });
 
 })
 
