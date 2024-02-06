@@ -25,41 +25,42 @@ $(document).ready(function () {
     }
 
     // Function to make API request to retrieve football data
-function getFootballAPI() {
-    // Set input before calling the API
-    input = $('#search-input').val();
-    // Check if the user has entered anything
-    if (!input) {
-        displayCityNotFoundError('Input cannot be blank');
-        return;
+    function getFootballAPI() {
+        // Set input before calling the API
+        input = $('#search-input').val();
+        // Check if the user has entered anything
+        if (!input) {
+            displayCityNotFoundError('Input cannot be blank');
+            return;
+        }
+
+        const url = 'https://api-football-v1.p.rapidapi.com/v3/venues?country=Usa';
+
+        // Save the input to local storage
+        saveToLocalStorage(input);
+
+        // Fetch data from the API
+        fetch(url, options)
+            .then(function (response) {
+                // Check if the response status is 200 (OK)
+                console.log(response)
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    // Display an error message for non-200 responses
+                    displayCityNotFoundError('Error fetching data. Please try again.');
+                    throw new Error('Non-200 response status');
+                }
+            })
+            .then(function (data) {
+                console.log(data)
+                if (data && data.response && data.response.length > 0) {
+                    displayCard(data);
+                } else {
+                    displayCityNotFoundError('Not a valid city');
+                }
+            });
     }
-
-    const url = 'https://api-football-v1.p.rapidapi.com/v3/venues?country=Usa';
-
-    // Save the input to local storage
-    saveToLocalStorage(input);
-
-    // Fetch data from the API
-    fetch(url, options)
-        .then(function (response) {
-            // Check if the response status is 200 (OK)
-            if (response.status === 200) {
-                return response.json();
-            } else {
-                // Display an error message for non-200 responses
-                displayCityNotFoundError('Error fetching data. Please try again.');
-                throw new Error('Non-200 response status');
-            }
-        })
-        .then(function (data) {
-            console.log(data)
-            if (data && data.response && data.response.length > 0) {
-                displayCard(data);
-            } else {
-                displayCityNotFoundError('Not a valid city');
-            }
-        });
-}
 
 
     // Function to create a card element
@@ -103,72 +104,81 @@ function getFootballAPI() {
         return card;
     }
 
-
     // Function to display the card with stadium information
     function displayCard(data) {
         // Clear existing cards before displaying new ones
         $(".display-stadium-card").empty();
 
         if (data && data.response) {
-            for (var i = 0; i < data.response.length; i++) {
-                var city = data.response[i].city.split(',')[0].trim()
-                if (city.toLowerCase().includes(input.toLowerCase())) {
+            var data_response = data.response.filter(response => {
+                return response.city ? response.city.toLowerCase().includes(input.toLowerCase()):false})
+            if(data_response.length === 0){
+                displayCityNotFoundError('No city has been found! Please try again!')
+                return
+            }
+            for (var i = 0; i < data_response.length; i++) {
 
-                    var stadiumData = createCard();
-                    var urlLocation = data.response[i].name.replace(/ /g, '+')
+                if (data_response[i].city) {
+                    
+                    var city = data_response[i].city.split(',')[0].trim()
+                    if (city.toLowerCase().includes(input.toLowerCase())) {
 
-                    if (urlLocation.includes('Stadium')) {
-                        mapSrc = `https://maps.googleapis.com/maps/api/staticmap?center=${urlLocation},CA&zoom=17&size=400x400&key=${mapsKey}&maptype=hybrid`
-                    } else {
-                        mapSrc = `https://maps.googleapis.com/maps/api/staticmap?center=${urlLocation + '+Stadium'},CA&zoom=17&size=400x400&key=${mapsKey}&maptype=hybrid`
-                    }
-                    $('.card-img-top', stadiumData).attr('src', mapSrc);
-                    $('.card-title', stadiumData).text(data.response[i].name);
-                    $('.address', stadiumData).text('Address: ' + data.response[i].address);
-                    $('.capacity', stadiumData).text('Capacity: ' + data.response[i].capacity + ' Espectators');
-                    $('.city', stadiumData).text('City: ' + city); // Use the sanitized city variable
-                    $('.surface', stadiumData).text('Surface: ' + data.response[i].surface);
+                        var stadiumData = createCard();
+                        var urlLocation = data_response[i].name.replace(/ /g, '+')
 
-                    $(".display-stadium-card").append(stadiumData);
+                        if (urlLocation.includes('Stadium')) {
+                            mapSrc = `https://maps.googleapis.com/maps/api/staticmap?center=${urlLocation},CA&zoom=17&size=400x400&key=${mapsKey}&maptype=hybrid`
+                        } else {
+                            mapSrc = `https://maps.googleapis.com/maps/api/staticmap?center=${urlLocation + '+Stadium'},CA&zoom=17&size=400x400&key=${mapsKey}&maptype=hybrid`
+                        }
+                        $('.card-img-top', stadiumData).attr('src', mapSrc);
+                        $('.card-title', stadiumData).text(data_response[i].name);
+                        $('.address', stadiumData).text('Address: ' + data_response[i].address);
+                        $('.capacity', stadiumData).text('Capacity: ' + data_response[i].capacity + ' Espectators');
+                        $('.city', stadiumData).text('City: ' + city); // Use the sanitized city variable
+                        $('.surface', stadiumData).text('Surface: ' + data_response[i].surface);
+
+                        $(".display-stadium-card").append(stadiumData);
+                    } 
                 }
             }
         }
     }
 
-   // Function to display an error card when a city is not found
-function displayCityNotFoundError(error) {
-    // Clear existing cards before displaying the error
-    $(".display-stadium-card").empty();
-
-   
-    // Create a city not found error card element
-    var errorCard = $('<div>').addClass('card border-danger mb-3').css({
-        'max-width': '18rem',
-        'margin': 'auto',
-        'margin-top': '20px',
-        'border-color': '#dc3545'
-    });
-
-    var cardHeader = $('<div>').addClass('card-header bg-danger text-white').text('Error');
-    var cardBody = $('<div>').addClass('card-body text-danger');
-    var errorMessage = $('<p>').addClass('card-text text-center').text(error);
-
-    // Append elements to the city not found error card
-    cardBody.append(errorMessage);
-    errorCard.append(cardHeader);
-    errorCard.append(cardBody);
-
-    // Append the city not found error card to the display container
-    $(".display-stadium-card").append(errorCard);
-
-    // Remove the error message after 3 seconds
-    setTimeout(function () {
-        errorCard.remove();
-    }, 3000);
-}
+    // Function to display an error card when a city is not found
+    function displayCityNotFoundError(error) {
+        // Clear existing cards before displaying the error
+        $(".display-stadium-card").empty();
 
 
-   
+        // Create a city not found error card element
+        var errorCard = $('<div>').addClass('card border-danger mb-3').css({
+            'max-width': '18rem',
+            'margin': 'auto',
+            'margin-top': '20px',
+            'border-color': '#dc3545'
+        });
+
+        var cardHeader = $('<div>').addClass('card-header bg-danger text-white').text('Error');
+        var cardBody = $('<div>').addClass('card-body text-danger');
+        var errorMessage = $('<p>').addClass('card-text text-center').text(error);
+
+        // Append elements to the city not found error card
+        cardBody.append(errorMessage);
+        errorCard.append(cardHeader);
+        errorCard.append(cardBody);
+
+        // Append the city not found error card to the display container
+        $(".display-stadium-card").append(errorCard);
+
+        // Remove the error message after 3 seconds
+        setTimeout(function () {
+            errorCard.remove();
+        }, 3000);
+    }
+
+
+
 
 
     // Function to load venues history from local storage
@@ -179,7 +189,7 @@ function displayCityNotFoundError(error) {
         // Create buttons for venues history
         createHistoryButtons(venuesHistory);
         // Show the history buttons
-    $('#venues-history').show();
+        $('#venues-history').show();
     }
 
     // Function to save a city to local storage
@@ -214,12 +224,12 @@ function displayCityNotFoundError(error) {
             $('#venues-history').append(historyButton);
         });
 
-        
+
     }
 
     $('#venues-history').hide();
-     // Handle click event for Venues History link
-     $('#venues-history-link').click(function () {
+    // Handle click event for Venues History link
+    $('#venues-history-link').click(function () {
         // Load and show the venues history when the link is clicked
         loadVenuesHistory();
     });
